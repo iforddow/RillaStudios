@@ -23,7 +23,7 @@ export default function HeaderLinkWithSubMenu({
   const theme = useMantineTheme();
 
   const links = submenu.items.map((item) => (
-    <HeaderSubMenuLink submenuItem={item} />
+    <HeaderSubMenuLink key={item.label} submenuItem={item} />
   ));
 
   return (

@@ -1,24 +1,20 @@
 import Link from "next/link";
 import classes from "../css/Header.module.css";
-import { SubMenu } from "../types/SubMenu";
 import HeaderLinkWithSubMenu from "./HeaderLinkWithSubMenu";
+import type { HeaderLink } from "../types/HeaderLink";
 
 export default function HeaderLink({
-  href,
-  label,
-  submenu,
+  headerLink,
 }: {
-  href: string;
-  label: string;
-  submenu?: SubMenu;
+  headerLink: HeaderLink;
 }) {
-  if (submenu) {
-    return <HeaderLinkWithSubMenu submenu={submenu} />;
+  if (headerLink.subMenu) {
+    return <HeaderLinkWithSubMenu submenu={headerLink.subMenu} />;
   }
 
   return (
-    <Link href={href} className={classes.link}>
-      <span>{label}</span>
+    <Link href={headerLink.href} className={classes.link}>
+      <span>{headerLink.label}</span>
     </Link>
   );
 }

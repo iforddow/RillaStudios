@@ -1,7 +1,8 @@
 "use client";
 
-import { useComputedColorScheme } from "@mantine/core";
+import { Skeleton, useComputedColorScheme } from "@mantine/core";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function RillaFullLogo({
   width,
@@ -10,6 +11,12 @@ export default function RillaFullLogo({
   width?: number;
   height?: number;
 }) {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
   const computedColorScheme = useComputedColorScheme("light", {
     getInitialValueInEffect: true,
   });
@@ -25,6 +32,12 @@ export default function RillaFullLogo({
       break;
     default:
       logoSrc = "/rilla-logo-black.png";
+  }
+
+  if (!hasMounted) {
+    return (
+      <Skeleton height={height || 40} width={width || 120} />
+    );
   }
 
   return (

@@ -17,6 +17,8 @@ import { useDisclosure } from "@mantine/hooks";
 import classes from "./css/Header.module.css";
 import RillaFullLogo from "@/components/images/RillaFullLogo";
 import { IconChevronDown } from "@tabler/icons-react";
+import { MENU_ITEMS } from "./MenuItems";
+import HeaderLink from "./components/HeaderLink";
 
 export function Header() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
@@ -30,12 +32,19 @@ export function Header() {
         <Group justify="space-between" h="100%">
           <RillaFullLogo />
           <Group h="100%" gap={0} visibleFrom="sm">
-            {/* Menu Items Here! */}
+            {
+              MENU_ITEMS.map((item) => (
+                <HeaderLink 
+                  key={item.label}
+                  headerLink={item}
+                />
+              ))
+            }
           </Group>
 
           <Group visibleFrom="sm">
             <Button variant="default">Log in</Button>
-            <Button>Sign up</Button>
+            <Button>Contact Us</Button>
           </Group>
 
           <Burger
