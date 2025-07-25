@@ -17,23 +17,23 @@ import { useDisclosure } from "@mantine/hooks";
 import classes from "./css/Header.module.css";
 import RillaFullLogo from "@/components/images/RillaFullLogo";
 import { IconChevronDown } from "@tabler/icons-react";
-import { MENU_ITEMS } from "./MenuItems";
 import HeaderLink from "./components/HeaderLink";
+import { HeaderLink as HeaderLinkType } from "./types/HeaderLink";
 
-export function Header() {
+export function Header({ menuItems }: { menuItems: HeaderLinkType[] }) {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
 
   return (
-    <Box pb={120}>
+    <Box>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           <RillaFullLogo />
           <Group h="100%" gap={0} visibleFrom="sm">
             {
-              MENU_ITEMS.map((item) => (
+              menuItems.map((item) => (
                 <HeaderLink 
                   key={item.label}
                   headerLink={item}
@@ -43,7 +43,6 @@ export function Header() {
           </Group>
 
           <Group visibleFrom="sm">
-            <Button variant="default">Log in</Button>
             <Button>Contact Us</Button>
           </Group>
 

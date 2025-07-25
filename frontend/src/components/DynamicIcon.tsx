@@ -1,22 +1,29 @@
+import Image from "next/image";
+
 export default function DynamicIcon({
-  name,
+  src,
   width,
   height,
   color,
 }: {
-  name?: string;
+  src?: string;
   width?: number;
   height?: number;
   color?: string;
 }) {
-  if (!name) {
+  if (!src) {
     return null;
   }
 
   return (
-    <i
-      className={`ti ti-${name}`}
-      style={{ width: width || 22, height: height || 22, color: color }}
+    <Image
+      src={src}
+      alt="icon"
+      width={width || 22}
+      height={height || 22}
+      style={{
+        filter: color ? `invert(1) sepia(1) saturate(5) hue-rotate(${color})` : undefined,
+      }}
     />
   );
 }

@@ -14,10 +14,13 @@ import { IconChevronDown } from "@tabler/icons-react";
 import { SubMenu } from "../types/SubMenu";
 import HeaderSubMenuLink from "./HeaderSubMenuLink";
 import classes from "../css/Header.module.css";
+import { HeaderLink } from "../types/HeaderLink";
 
 export default function HeaderLinkWithSubMenu({
+  headerLink,
   submenu,
 }: {
+  headerLink: HeaderLink;
   submenu: SubMenu;
 }) {
   const theme = useMantineTheme();
@@ -41,7 +44,7 @@ export default function HeaderLinkWithSubMenu({
         >
           <Center inline>
             <Box component="span" mr={5}>
-              Features
+              {headerLink.label}
             </Box>
             <IconChevronDown size={16} color={theme.colors.primary[6]} />
           </Center>
@@ -50,10 +53,12 @@ export default function HeaderLinkWithSubMenu({
 
       <HoverCard.Dropdown style={{ overflow: "hidden" }}>
         <Group justify="space-between" px="md">
-          <Text>Features</Text>
-          <Anchor href="#" fz="xs">
-            View all
-          </Anchor>
+          <Text>{submenu.title}</Text>
+          {submenu.viewAllHref && (
+            <Anchor href={submenu.viewAllHref} fz="xs">
+              View all
+            </Anchor>
+          )}
         </Group>
 
         <Divider my="sm" />

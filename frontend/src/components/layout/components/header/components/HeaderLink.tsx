@@ -9,7 +9,7 @@ export default function HeaderLink({
   headerLink: HeaderLink;
 }) {
   if (headerLink.subMenu) {
-    return <HeaderLinkWithSubMenu submenu={headerLink.subMenu} />;
+    return <HeaderLinkWithSubMenu headerLink={headerLink} submenu={headerLink.subMenu} />;
   }
 
   return (

@@ -18,7 +18,7 @@ export default function HeaderSubMenuLink({
     <UnstyledButton className={classes.subLink} key={submenuItem.label}>
       <Group wrap="nowrap" align="flex-start">
         <ThemeIcon size={34} variant="default" radius="md">
-          <DynamicIcon name={submenuItem.icon} />
+          <DynamicIcon src={submenuItem.icon} />
         </ThemeIcon>
         <div>
           <Text size="sm" fw={500}>
